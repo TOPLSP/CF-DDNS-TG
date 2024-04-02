@@ -32,10 +32,11 @@ TGbot设置
  * MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
 
 ```
-
+开机定时任务 none
 # crontab -e
+2分钟一次
 # */2 * * * * cf-ddns.sh >/dev/null 2>&1
-# or you need log:
+# 或者要记录
 # */2 * * * * /cf-ddns.sh >> /var/log/cf-ddns.log 2>&1
 
 ```
