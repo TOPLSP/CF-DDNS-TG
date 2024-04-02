@@ -90,7 +90,7 @@ if [ "$WAN_IP" = "$OLD_WAN_IP" ] && [ "$FORCE" = false ]; then
 fi
 
 # Get zone_identifier & record_identifier
-ID_FILE=$HOME/.wan_ip.txt
+ID_FILE=$HOME/.cf_id_$CFRECORD_NAME.txt
 if [ -f $ID_FILE ] && [ $(wc -l $ID_FILE | cut -d " " -f 1) == 4 ] \
   && [ "$(sed -n '3,1p' "$ID_FILE")" == "$CFZONE_NAME" ] \
   && [ "$(sed -n '4,1p' "$ID_FILE")" == "$CFRECORD_NAME" ]; then
