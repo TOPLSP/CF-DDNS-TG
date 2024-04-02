@@ -27,7 +27,7 @@
 #            -z example.com \          # will show you all zones if forgot, but you need this
 #            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4
 #            -f false|true \           # force dns update, disregard local stored ip
-```
+
 
 CFKEY=api密钥，请访问: https://www.cloudflare.com/a/account/my-account 获取
 CFUSER=登录邮箱
@@ -37,10 +37,12 @@ CFRECORD_TYPE=A   A=ipv4/AAAA=ipv6
 CFTTL=1           20-120
 FORCE=false       true=强制更新ip
 
-# TGbot设置  @botfather bottoken/@userinfoid
+TGbot设置  @botfather bottoken/@userinfoid
 API_TOKEN=""
 CHAT_ID=""
-# 发送内容
+发送内容
 MESSAGE="[xxx]IP已更新为 $WAN_IP"
 
-基于  修改
+```
+
+基于   修改
