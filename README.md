@@ -40,13 +40,13 @@ MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
 
 ```
 
-# 用法:
-# cf-ddns.sh -k cloudflare-api-key \
-#            -u user@example.com \
-#            -h host.example.com \     # fqdn of the record you want to update
-#            -z example.com \          # will show you all zones if forgot, but you need this
-#            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4
-#            -f false|true \           # force dns update, disregard local stored ip
+用法:
+cf-ddns.sh -k cloudflare-api-key \
+            -u user@example.com \
+            -h host.example.com \     # fqdn of the record you want to update
+            -z example.com \          # will show you all zones if forgot, but you need this
+            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4
+            -f false|true \           # force dns update, disregard local stored ip
 
 
 
