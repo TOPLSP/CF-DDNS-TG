@@ -13,7 +13,7 @@ CFUSER=
 # Zone name, eg: example.com  填写域名
 CFZONE_NAME=
 
-# Hostname to update, eg: homeserver.example.com 填写 主机名
+# Hostname to update, eg: homeserver.example.com  填写 主机名
 CFRECORD_NAME=
 
 # Record type, A(IPv4)|AAAA(IPv6), default IPv4
@@ -23,11 +23,12 @@ CFTTL=1
 # Ignore local file, update ip anyway
 FORCE=false
 
-# TGbot设置                                填写
+# TGbot设置              填写tg token
 API_TOKEN=""
 CHAT_ID=""
-# 发送内容
-MESSAGE="[xxx]IP已更新为 $WAN_IP"
+
+# 发送内容 可设为 小鸡名称
+MESSAGE="主机[xxx]"
 
 WANIPSITE="http://ipv4.icanhazip.com"
 # Site to retrieve WAN ip, other examples are: bot.whatismyipaddress.com, https://api.ipify.org/ ...
@@ -54,15 +55,15 @@ done
 
 # If required settings are missing just exit
 if [ "$CFKEY" = "" ]; then
-  echo "缺少api密钥，请访问: https://www.cloudflare.com/a/account/my-account 获取,并编辑配置或使用-k xxxxx 设置"
+  echo "缺少api密钥，请访问: https://www.cloudflare.com/a/account/my-account 获取,并编辑配置或使用-k xxxxxxx 设置"
   exit 2
 fi
 if [ "$CFUSER" = "" ]; then
-  echo "缺少用户名,请填写登录邮箱"
+  echo "缺少用户名,请填写登录邮箱或使用-u xxx@xxx.xxx 设置"
   exit 2
 fi
 if [ "$CFRECORD_NAME" = "" ]; then 
-  echo "缺少主机名，请编辑配置或使用-h xxx.xxx.com 设置"
+  echo "缺少主机名，请编辑配置或使用-h xxx.xxx.xxx 设置"
   exit 2
 fi
 
@@ -74,7 +75,7 @@ fi
 
 # Get current and old WAN ip
 WAN_IP=`curl -s ${WANIPSITE}`
-WAN_IP_FILE=$HOME/.cf-wan_ip.txt
+WAN_IP_FILE=$HOME/.wan_ip.txt
 if [ -f $WAN_IP_FILE ]; then
   OLD_WAN_IP=`cat $WAN_IP_FILE`
 else
@@ -89,7 +90,7 @@ if [ "$WAN_IP" = "$OLD_WAN_IP" ] && [ "$FORCE" = false ]; then
 fi
 
 # Get zone_identifier & record_identifier
-ID_FILE=$HOME/.cf-id_$CFRECORD_NAME.txt
+ID_FILE=$HOME/.wan_ip.txt
 if [ -f $ID_FILE ] && [ $(wc -l $ID_FILE | cut -d " " -f 1) == 4 ] \
   && [ "$(sed -n '3,1p' "$ID_FILE")" == "$CFZONE_NAME" ] \
   && [ "$(sed -n '4,1p' "$ID_FILE")" == "$CFRECORD_NAME" ]; then
@@ -106,7 +107,7 @@ else
 fi
 
 # If WAN is changed, update cloudflare
-echo "DNS更新为 $WAN_IP"
+echo "IP 更新为 $WAN_IP"
 RESPONSE=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$CFZONE_ID/dns_records/$CFRECORD_ID" \
   -H "X-Auth-Email: $CFUSER" \
   -H "X-Auth-Key: $CFKEY" \
@@ -122,7 +123,7 @@ if [ "$RESPONSE" != "${RESPONSE%success*}" ] && [ "$(echo $RESPONSE | grep "\"su
   echo "更新完成!"
   echo $WAN_IP > $WAN_IP_FILE
   # 向Telegram Bot发送消息
-  curl -s -X POST https://api.telegram.org/bot$API_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text="$MESSAGE"
+  curl -s -X POST https://api.telegram.org/bot$API_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text="$MESSAGE IP已变更为 $WAN_IP "
   exit
 else
   echo '出现错误 :('
