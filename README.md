@@ -41,7 +41,8 @@ TGbot设置
 ```
 
 用法:
-cf-ddns.sh -k cloudflare-api-key \
+cf-ddns.sh
+* -k cloudflare-api-key \
 * -u user@example.com \
 * -h host.example.com \     # fqdn of the record you want to update
 * -z example.com \          # will show you all zones if forgot, but you need this
@@ -49,7 +50,6 @@ cf-ddns.sh -k cloudflare-api-key \
 * -f false|true \           # force dns update, disregard local stored ip
 
 
-
-基于   修改
+基于 作者 yulewang 的cf-ddns 修改
 
 
