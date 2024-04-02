@@ -14,7 +14,7 @@
 5.或者直接给账号APIkey
 #下载脚本
 ```
-# curl -sS -O https://raw.githubusercontent.com/TOPLSP/CF-DDNS-TG/main/cf-ddns.sh && chmod +x cf-ddns.sh
+curl -sS -O https://raw.githubusercontent.com/TOPLSP/CF-DDNS-TG/main/cf-ddns.sh](https://github.com/TOPLSP/CF-DDNS-TG/blob/edf94889af2beb04f0bb436375e8f98347e5269a/cf-ddns.sh && chmod +x cf-ddns.sh
 ```
 root目录下面找到 cf-ddns.sh 并配置相关参数:
  * CFKEY=api密钥，访问: https://www.cloudflare.com/a/account/my-account 获取
@@ -32,12 +32,12 @@ TGbot设置
  * MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
 
 ```
-开机定时任务 none
-# crontab -e
+开机定时任务 none 
+crontab -e
 2分钟一次
-# */2 * * * * cf-ddns.sh >/dev/null 2>&1
+*/2 * * * * cf-ddns.sh >/dev/null 2>&1
 # 或者要记录
-# */2 * * * * /cf-ddns.sh >> /var/log/cf-ddns.log 2>&1
+*/2 * * * * /cf-ddns.sh >> /var/log/cf-ddns.log 2>&1
 
 ```
 
