@@ -17,19 +17,19 @@
 # curl -sS -O https://raw.githubusercontent.com/TOPLSP/CF-DDNS-TG/main/cf-ddns.sh && chmod +x cf-ddns.sh
 ```
 root目录下面找到 cf-ddns.sh 并配置相关参数:
-CFKEY=api密钥，访问: https://www.cloudflare.com/a/account/my-account 获取
-CFUSER=登录邮箱
-CFZONE_NAME=域名
-CFRECORD_NAME=主机名
-CFRECORD_TYPE=A   A=ipv4/AAAA=ipv6
-CFTTL=20           20-120
-FORCE=false       true=强制更新ip
+ * CFKEY=api密钥，访问: https://www.cloudflare.com/a/account/my-account 获取
+ * CFUSER=登录邮箱
+ * CFZONE_NAME=域名
+ * CFRECORD_NAME=主机名
+ * CFRECORD_TYPE=A   A=ipv4/AAAA=ipv6
+ * CFTTL=20           20-120
+ * FORCE=false       true=强制更新ip
 
 TGbot设置
-API_TOKEN=""   @botfather 获取 bot token
-CHAT_ID=""     @userinfoid 获取 userID
+ * API_TOKEN=""   @botfather 获取 bot token
+ * CHAT_ID=""     @userinfoid 获取 userID
 发送内容
-MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
+ * MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
 
 ```
 
@@ -42,11 +42,11 @@ MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
 
 用法:
 cf-ddns.sh -k cloudflare-api-key \
-            -u user@example.com \
-            -h host.example.com \     # fqdn of the record you want to update
-            -z example.com \          # will show you all zones if forgot, but you need this
-            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4
-            -f false|true \           # force dns update, disregard local stored ip
+         * -u user@example.com \
+         * -h host.example.com \     # fqdn of the record you want to update
+         * -z example.com \          # will show you all zones if forgot, but you need this
+         * -t A|AAAA                 # specify ipv4/ipv6, default: ipv4
+         * -f false|true \           # force dns update, disregard local stored ip
 
 
 
