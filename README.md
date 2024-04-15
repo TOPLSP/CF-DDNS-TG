@@ -30,12 +30,12 @@ TGbot设置
  * API_TOKEN=""   @botfather 获取 bot token
  * CHAT_ID=""     @userinfoid 获取 userID
 发送内容
- * MESSAGE="[xxx]IP已更新为 $WAN_IP"    xxx为主机
+ * MESSAGE="主机[xxx]"    xxx为主机名称
 
 ```
-开机定时任务 none 
+#开机定时任务none 
 crontab -e
-2分钟一次
+#2分钟一次
 */2 * * * * cf-ddns.sh >/dev/null 2>&1
 # 或者要记录
 */2 * * * * /cf-ddns.sh >> /var/log/cf-ddns.log 2>&1
