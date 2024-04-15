@@ -15,7 +15,6 @@
 #下载脚本
 ```
 curl -sS -O https://raw.githubusercontent.com/TOPLSP/CF-DDNS-TG/main/cf-ddns.sh && chmod +x cf-ddns.sh
-
 ```
 root目录下面找到 cf-ddns.sh 并配置相关参数:
  * CFKEY=api密钥，访问: https://www.cloudflare.com/a/account/my-account 获取
